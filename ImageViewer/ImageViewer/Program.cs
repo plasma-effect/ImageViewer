@@ -12,11 +12,11 @@ namespace ImageViewer
         /// アプリケーションのメイン エントリ ポイントです。
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FileExplorer());
+            Application.Run(new FileExplorer(args.Length == 0 ? null : args[0]));
         }
     }
 }
