@@ -15,18 +15,18 @@ namespace ImageViewer
     {
         public DirectoryFile(int index, FileExplorer explorer, string name)
         {
-            this.index = index;
+            this.Index = index;
             this.explorer = explorer;
             InitializeComponent();
             this.label1.Text = name;
         }
 
-        int index;
+        public int Index { get; }
         FileExplorer explorer;
 
         private void ShowClick(object sender, EventArgs e)
         {
-
+            ContentSelect();
         }
 
         private void AddAlbumClick(object sender, EventArgs e)
@@ -36,7 +36,7 @@ namespace ImageViewer
 
         public void ContentSelect()
         {
-            this.explorer.ClickDirectoryFile(this.index);
+            this.explorer.ClickDirectoryFile(this.Index);
             this.label1.ForeColor = Color.White;
             this.BackColor = Color.Blue;
         }

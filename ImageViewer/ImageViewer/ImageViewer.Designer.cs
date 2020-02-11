@@ -54,7 +54,7 @@
             this.KeyPreview = true;
             this.Name = "ImageViewer";
             this.Text = "ImageViewer";
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ImageViewerKeyPress);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ImageViewerFormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 

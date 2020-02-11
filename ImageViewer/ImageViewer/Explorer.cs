@@ -21,9 +21,8 @@ namespace ImageViewer
                 path = Application.ExecutablePath;
             }
             this.directory = new DirectoryInfo(Path.GetDirectoryName(path));
-            FontChange(Properties.Settings.Default.controlFont);
         }
-        static string[] targetExtention = new string[]
+        static readonly string[] targetExtention = new string[]
             {
                 ".bmp",".gif",".jpeg", ".jpg", ".jpe",".jfif", ".jfi", ".jif",".png",".tiff",".tif"
             };
@@ -44,6 +43,10 @@ namespace ImageViewer
                 this.albumLayoutPanel.Location.X,
                 this.albumLayoutPanel.Location.Y - diff);
             this.albumLayoutPanel.Height -= diff;
+            foreach(var (_, content) in this.directoryList)
+            {
+                content.SetFont(this.font);
+            }
         }
 
         private void SetDirectory(string path)
@@ -93,6 +96,7 @@ namespace ImageViewer
             this.viewer = new ImageViewer(this);
             this.viewer.Show();
             SetDirectory(this.directory.FullName);
+            FontChange(Properties.Settings.Default.controlFont);
         }
 
         private void FileExplorerClosed(object sender, FormClosedEventArgs e)
@@ -149,6 +153,65 @@ namespace ImageViewer
         public void ClickAlbumFile(int index)
         {
             throw new NotImplementedException();
+        }
+
+        public void PressViewArrow(int shift)
+        {
+            if(this.currentFileD != null)
+            {
+                var i = this.currentFileD.Index + shift;
+                if (0 <= i && i < this.directoryList.Count && this.directoryList[i].content is DirectoryFile df)
+                {
+                    df.ContentSelect();
+                }
+            }
+        }
+
+        private void OpenFolderToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var fbd = new FolderBrowserDialog())
+                {
+                    fbd.Description = "フォルダを選択してください";
+                    fbd.RootFolder = Environment.SpecialFolder.MyComputer;
+                    fbd.ShowNewFolderButton = false;
+                    if (fbd.ShowDialog(this) == DialogResult.OK)
+                    {
+                        SetDirectory(fbd.SelectedPath);
+                    }
+                }
+            }
+            catch(Exception exp)
+            {
+                MessageBox.Show($@"エラーが発生しました、操作を中止します
+-------------------------------------
+{exp}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CloseToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void VersionInformationToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            using(var form = new HelpForm.VersionDialog())
+            {
+                form.ShowDialog();
+            }
+        }
+
+        private void ChangeFontToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            using(var form = new ChangeFontForm(this.font))
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    FontChange(form.CurrentFont);
+                }
+            }
         }
     }
 }

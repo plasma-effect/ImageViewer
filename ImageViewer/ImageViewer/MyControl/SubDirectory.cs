@@ -25,7 +25,7 @@ namespace ImageViewer
 
         private void OpenDirectoryClick(object sender, EventArgs e)
         {
-
+            ContentSelect();
         }
 
         private void AddAllContentClick(object sender, EventArgs e)

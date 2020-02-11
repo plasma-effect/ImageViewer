@@ -78,7 +78,7 @@
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.label1);
             this.Name = "SubDirectory";
-            this.Size = new System.Drawing.Size(674, 33);
+            this.Size = new System.Drawing.Size(851, 33);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

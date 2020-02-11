@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Licence" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\licence.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;shift_jis</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>上記の著作権表示、及び上記URLの本文を
+ソフトウェアの全ての複製または重要な部分に記載することで
+本ソフトウェアの複製、変更、頒布、発売等を無制限に行うことができます。
+
+ただし本ソフトウェアは現状のまま、何らの保証もなく提供されます。
+本ソフトウェアの使用またはその他の扱いによって生じる
+一切の請求、損害、その他の義務について
+本ソフトウェアの作者は何らの責任も負わないものとします。</value>
   </data>
 </root>

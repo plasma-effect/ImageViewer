@@ -20,9 +20,32 @@ namespace ImageViewer
         }
         FileExplorer explorer;
 
-        private void ImageViewerKeyPress(object sender, KeyPressEventArgs e)
+        protected override bool IsInputKey(Keys keyData)
         {
+            if (keyData == Keys.Right || keyData == Keys.Left || keyData == Keys.Up || keyData == Keys.Down)
+            {
+                return true;
+            }
+            else
+            {
+                return base.IsInputKey(keyData);
+            }
+        }
 
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Down)
+            {
+                this.explorer.PressViewArrow(1);
+            }
+            else if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Up)
+            {
+                this.explorer.PressViewArrow(-1);
+            }
+            else
+            {
+                base.OnKeyDown(e);
+            }
         }
 
         public void View(string path)
@@ -34,6 +57,7 @@ namespace ImageViewer
                     this.pictureBox.Image.Dispose();
                 }
                 this.pictureBox.Image = null;
+                this.Text = "ImageViewer";
                 return;
             }
 
@@ -51,11 +75,17 @@ namespace ImageViewer
                     this.pictureBox.Image.Dispose();
                 }
                 this.pictureBox.Image = image;
+                this.Text = Path.GetFileName(path);
             }
             catch (OutOfMemoryException)
             {
                 throw new ArgumentException($"{path}は対応していない形式です、表をリロードします");
             }
+        }
+
+        private void ImageViewerFormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
