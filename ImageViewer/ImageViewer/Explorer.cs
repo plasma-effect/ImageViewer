@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using System.Runtime.Serialization.Json;
+using System.Text.Json;
 using static System.Linq.Enumerable;
 
 namespace ImageViewer
@@ -677,10 +677,9 @@ namespace ImageViewer
             }
             try
             {
-                var deserializer = new DataContractJsonSerializer(typeof(List<string>));
-                using (var stream = new FileStream(path, FileMode.Open))
+                using (var stream = new StreamReader(path))
                 {
-                    if (deserializer.ReadObject(stream) is List<string> filelist)
+                    if (JsonSerializer.Deserialize<List<string>>(stream.ReadToEnd()) is List<string> filelist)
                     {
                         this.albumList.Clear();
                         this.albumLayoutPanel.Controls.Clear();
@@ -733,15 +732,14 @@ namespace ImageViewer
                 SaveAlbumAsAnotherName();
                 return this.AlbumPath != null;
             }
-            var serializer = new DataContractJsonSerializer(typeof(List<string>));
             var list = new List<string>();
             foreach (var (path, _) in this.albumList)
             {
                 list.Add(path);
             }
-            using (var stream = new FileStream(this.AlbumPath, FileMode.OpenOrCreate))
+            using (var stream = new StreamWriter(this.AlbumPath))
             {
-                serializer.WriteObject(stream, list);
+                stream.WriteLine(JsonSerializer.Serialize(list));
                 this.Changed = false;
                 this.albumNameLabel.Text = Path.GetFileNameWithoutExtension(this.AlbumPath);
             }

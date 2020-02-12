@@ -34,6 +34,7 @@
             this.copyrightLabel = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // applicationNameLabel
@@ -59,21 +60,21 @@
             // copyrightLabel
             // 
             this.copyrightLabel.AutoSize = true;
-            this.copyrightLabel.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.copyrightLabel.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.copyrightLabel.Location = new System.Drawing.Point(12, 75);
             this.copyrightLabel.Name = "copyrightLabel";
-            this.copyrightLabel.Size = new System.Drawing.Size(661, 198);
+            this.copyrightLabel.Size = new System.Drawing.Size(495, 144);
             this.copyrightLabel.TabIndex = 2;
             this.copyrightLabel.Text = "Copyright (c) 2020 plasma-effect\r\nTwitter:@plasma_ep\r\nGitHub:plasma-effect\r\n\r\nこのソ" +
-    "フトウェアはMIT Licenceの下で公開されます。\r\n詳しくは以下のURLを参照してください。";
+    "フトウェアはMIT Licenseの下で公開されます。\r\n詳しくは以下のURLを参照してください。";
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.linkLabel1.Location = new System.Drawing.Point(12, 273);
+            this.linkLabel1.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.linkLabel1.Location = new System.Drawing.Point(12, 219);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(972, 33);
+            this.linkLabel1.Size = new System.Drawing.Size(722, 24);
             this.linkLabel1.TabIndex = 3;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "https://github.com/plasma-effect/ImageViewer/blob/master/LICENSE";
@@ -82,18 +83,29 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(12, 306);
+            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Location = new System.Drawing.Point(12, 243);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(947, 264);
+            this.label1.Size = new System.Drawing.Size(710, 192);
             this.label1.TabIndex = 4;
             this.label1.Text = resources.GetString("label1.Text");
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Location = new System.Drawing.Point(740, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(1003, 816);
+            this.label2.TabIndex = 5;
+            this.label2.Text = resources.GetString("label2.Text");
             // 
             // VersionDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(994, 579);
+            this.ClientSize = new System.Drawing.Size(1774, 829);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.copyrightLabel);
@@ -114,5 +126,6 @@
         private System.Windows.Forms.Label copyrightLabel;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
