@@ -40,6 +40,11 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.閉じるToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.アルバムToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.名前順でソートToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.最終更新日時でソートToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.順番をランダムにするToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.フォントサイズの変更ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ヘルプToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,6 +54,7 @@
             this.directoryLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.albumLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.albumNameLabel = new System.Windows.Forms.Label();
+            this.recentPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,6 +64,7 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ファイルToolStripMenuItem,
+            this.アルバムToolStripMenuItem,
             this.設定ToolStripMenuItem,
             this.ヘルプToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -71,6 +78,7 @@
             this.ファイルToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.フォルダを開くToolStripMenuItem,
             this.アルバムを開くToolStripMenuItem,
+            this.recentPathToolStripMenuItem,
             this.toolStripSeparator1,
             this.アルバムを新規作成ToolStripMenuItem,
             this.アルバムを保存ToolStripMenuItem,
@@ -95,6 +103,7 @@
             this.アルバムを開くToolStripMenuItem.Name = "アルバムを開くToolStripMenuItem";
             this.アルバムを開くToolStripMenuItem.Size = new System.Drawing.Size(516, 44);
             this.アルバムを開くToolStripMenuItem.Text = "アルバムを開く";
+            this.アルバムを開くToolStripMenuItem.Click += new System.EventHandler(this.OpenAlbumToolStripMenuItemClick);
             // 
             // toolStripSeparator1
             // 
@@ -106,18 +115,21 @@
             this.アルバムを新規作成ToolStripMenuItem.Name = "アルバムを新規作成ToolStripMenuItem";
             this.アルバムを新規作成ToolStripMenuItem.Size = new System.Drawing.Size(516, 44);
             this.アルバムを新規作成ToolStripMenuItem.Text = "アルバムを新規作成";
+            this.アルバムを新規作成ToolStripMenuItem.Click += new System.EventHandler(this.NewAlbumToolStripMenuItemClick);
             // 
             // アルバムを保存ToolStripMenuItem
             // 
             this.アルバムを保存ToolStripMenuItem.Name = "アルバムを保存ToolStripMenuItem";
             this.アルバムを保存ToolStripMenuItem.Size = new System.Drawing.Size(516, 44);
             this.アルバムを保存ToolStripMenuItem.Text = "アルバムを保存";
+            this.アルバムを保存ToolStripMenuItem.Click += new System.EventHandler(this.SaveAlbumToolStripMenuItemClick);
             // 
             // アルバムを別名保存ToolStripMenuItem
             // 
             this.アルバムを別名保存ToolStripMenuItem.Name = "アルバムを別名保存ToolStripMenuItem";
             this.アルバムを別名保存ToolStripMenuItem.Size = new System.Drawing.Size(516, 44);
             this.アルバムを別名保存ToolStripMenuItem.Text = "アルバムを別名保存";
+            this.アルバムを別名保存ToolStripMenuItem.Click += new System.EventHandler(this.SaveAlbumAsAnotherNameToolStripMenuItemClick);
             // 
             // toolStripSeparator3
             // 
@@ -129,6 +141,7 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(516, 44);
             this.toolStripMenuItem1.Text = "フォルダ内の画像を全てアルバムに追加";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.AddAllFileCurrentDirectoryToolStripMenuItemClick);
             // 
             // toolStripSeparator2
             // 
@@ -142,6 +155,43 @@
             this.閉じるToolStripMenuItem.Text = "終了";
             this.閉じるToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItemClick);
             // 
+            // アルバムToolStripMenuItem
+            // 
+            this.アルバムToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.名前順でソートToolStripMenuItem,
+            this.最終更新日時でソートToolStripMenuItem,
+            this.toolStripSeparator5,
+            this.順番をランダムにするToolStripMenuItem});
+            this.アルバムToolStripMenuItem.Name = "アルバムToolStripMenuItem";
+            this.アルバムToolStripMenuItem.Size = new System.Drawing.Size(112, 38);
+            this.アルバムToolStripMenuItem.Text = "アルバム";
+            // 
+            // 名前順でソートToolStripMenuItem
+            // 
+            this.名前順でソートToolStripMenuItem.Name = "名前順でソートToolStripMenuItem";
+            this.名前順でソートToolStripMenuItem.Size = new System.Drawing.Size(361, 44);
+            this.名前順でソートToolStripMenuItem.Text = "名前順でソート";
+            this.名前順でソートToolStripMenuItem.Click += new System.EventHandler(this.SortByNameToolStripMenuItemClick);
+            // 
+            // 最終更新日時でソートToolStripMenuItem
+            // 
+            this.最終更新日時でソートToolStripMenuItem.Name = "最終更新日時でソートToolStripMenuItem";
+            this.最終更新日時でソートToolStripMenuItem.Size = new System.Drawing.Size(361, 44);
+            this.最終更新日時でソートToolStripMenuItem.Text = "最終更新日時でソート";
+            this.最終更新日時でソートToolStripMenuItem.Click += new System.EventHandler(this.SortByDayToolStripMenuItemClick);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(358, 6);
+            // 
+            // 順番をランダムにするToolStripMenuItem
+            // 
+            this.順番をランダムにするToolStripMenuItem.Name = "順番をランダムにするToolStripMenuItem";
+            this.順番をランダムにするToolStripMenuItem.Size = new System.Drawing.Size(361, 44);
+            this.順番をランダムにするToolStripMenuItem.Text = "順番をシャッフルする";
+            this.順番をランダムにするToolStripMenuItem.Click += new System.EventHandler(this.ShuffleAlbumToolStripMenuItemClick);
+            // 
             // 設定ToolStripMenuItem
             // 
             this.設定ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -153,7 +203,7 @@
             // フォントサイズの変更ToolStripMenuItem
             // 
             this.フォントサイズの変更ToolStripMenuItem.Name = "フォントサイズの変更ToolStripMenuItem";
-            this.フォントサイズの変更ToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.フォントサイズの変更ToolStripMenuItem.Size = new System.Drawing.Size(349, 44);
             this.フォントサイズの変更ToolStripMenuItem.Text = "フォント/サイズの変更";
             this.フォントサイズの変更ToolStripMenuItem.Click += new System.EventHandler(this.ChangeFontToolStripMenuItemClick);
             // 
@@ -170,18 +220,18 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(359, 44);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(283, 44);
             this.toolStripMenuItem2.Text = "使い方ガイド";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(356, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(280, 6);
             // 
             // バージョン情報ToolStripMenuItem
             // 
             this.バージョン情報ToolStripMenuItem.Name = "バージョン情報ToolStripMenuItem";
-            this.バージョン情報ToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.バージョン情報ToolStripMenuItem.Size = new System.Drawing.Size(283, 44);
             this.バージョン情報ToolStripMenuItem.Text = "バージョン情報";
             this.バージョン情報ToolStripMenuItem.Click += new System.EventHandler(this.VersionInformationToolStripMenuItemClick);
             // 
@@ -207,11 +257,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.albumLayoutPanel.AutoScroll = true;
             this.albumLayoutPanel.ColumnCount = 1;
-            this.albumLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.albumLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.albumLayoutPanel.Location = new System.Drawing.Point(716, 79);
             this.albumLayoutPanel.Name = "albumLayoutPanel";
             this.albumLayoutPanel.RowCount = 1;
-            this.albumLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.albumLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.albumLayoutPanel.Size = new System.Drawing.Size(500, 638);
             this.albumLayoutPanel.TabIndex = 2;
             // 
@@ -226,6 +276,12 @@
             this.albumNameLabel.TabIndex = 3;
             this.albumNameLabel.Text = "新しいアルバム";
             // 
+            // recentPathToolStripMenuItem
+            // 
+            this.recentPathToolStripMenuItem.Name = "recentPathToolStripMenuItem";
+            this.recentPathToolStripMenuItem.Size = new System.Drawing.Size(516, 44);
+            this.recentPathToolStripMenuItem.Text = "最近開いたアルバム";
+            // 
             // FileExplorer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
@@ -235,9 +291,11 @@
             this.Controls.Add(this.albumLayoutPanel);
             this.Controls.Add(this.directoryLayoutPanel);
             this.Controls.Add(this.menuStrip1);
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FileExplorer";
             this.Text = "Explorer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FileExplorerFormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FileExplorerClosed);
             this.Load += new System.EventHandler(this.FileExplorerLoad);
             this.menuStrip1.ResumeLayout(false);
@@ -270,6 +328,12 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem アルバムToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 名前順でソートToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 最終更新日時でソートToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem 順番をランダムにするToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem recentPathToolStripMenuItem;
     }
 }
 

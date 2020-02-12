@@ -43,9 +43,8 @@
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(429, 33);
+            this.label1.Size = new System.Drawing.Size(0, 33);
             this.label1.TabIndex = 0;
-            this.label1.Text = "C:\\Users\\mk_ve\\source\\repos";
             this.label1.Click += new System.EventHandler(this.LabelClick);
             // 
             // contextMenuStrip1
@@ -78,7 +77,7 @@
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.label1);
             this.Name = "SubDirectory";
-            this.Size = new System.Drawing.Size(851, 33);
+            this.Size = new System.Drawing.Size(500, 150);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

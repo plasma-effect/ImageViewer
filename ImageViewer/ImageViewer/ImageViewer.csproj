@@ -39,6 +39,7 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningsAsErrors>CS0649</WarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -56,6 +57,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -118,11 +120,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Utility.cs" />
     <EmbeddedResource Include="ChangeFontForm.resx">
       <DependentUpon>ChangeFontForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HelpForm\VersionDialog.resx">
       <DependentUpon>VersionDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyControl\AlbumFile.resx">
+      <DependentUpon>AlbumFile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyControl\DirectoryFile.resx">
       <DependentUpon>DirectoryFile.cs</DependentUpon>

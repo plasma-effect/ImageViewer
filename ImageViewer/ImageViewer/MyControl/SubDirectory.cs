@@ -12,16 +12,18 @@ namespace ImageViewer
 {
     public partial class SubDirectory : UserControl,IDirectoryContent
     {
-        public SubDirectory(int index, FileExplorer explorer, string name)
+        public SubDirectory(int index, FileExplorer explorer, string name, string fullpath, Font font)
         {
             this.index = index;
             this.explorer = explorer;
+            this.fullpath = fullpath;
             InitializeComponent();
             this.label1.Text = name;
-            this.Width = this.label1.Width;
+            SetFont(font);
         }
         int index;
         FileExplorer explorer;
+        string fullpath;
 
         private void OpenDirectoryClick(object sender, EventArgs e)
         {
@@ -30,7 +32,7 @@ namespace ImageViewer
 
         private void AddAllContentClick(object sender, EventArgs e)
         {
-
+            this.explorer.AddDirectoryToAlbum(this.fullpath);
         }
 
         public void ContentSelect()

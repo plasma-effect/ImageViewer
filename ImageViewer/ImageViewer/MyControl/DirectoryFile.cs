@@ -13,12 +13,13 @@ namespace ImageViewer
 {
     public partial class DirectoryFile : UserControl,IDirectoryContent
     {
-        public DirectoryFile(int index, FileExplorer explorer, string name)
+        public DirectoryFile(int index, FileExplorer explorer, string name, Font font)
         {
             this.Index = index;
             this.explorer = explorer;
             InitializeComponent();
             this.label1.Text = name;
+            SetFont(font);
         }
 
         public int Index { get; }
@@ -31,7 +32,7 @@ namespace ImageViewer
 
         private void AddAlbumClick(object sender, EventArgs e)
         {
-
+            this.explorer.AddFileToAlbum(this.Index);
         }
 
         public void ContentSelect()

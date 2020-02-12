@@ -70,11 +70,12 @@ namespace ImageViewer
             try
             {
                 image = Image.FromFile(path);
-                if(this.pictureBox.Image != null)
-                {
-                    this.pictureBox.Image.Dispose();
-                }
+                var prev = this.pictureBox.Image;
                 this.pictureBox.Image = image;
+                if (prev != null)
+                {
+                    prev.Dispose();
+                }
                 this.Text = Path.GetFileName(path);
             }
             catch (OutOfMemoryException)

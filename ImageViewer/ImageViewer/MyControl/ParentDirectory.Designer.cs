@@ -48,7 +48,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label1);
             this.Name = "ParentDirectory";
-            this.Size = new System.Drawing.Size(625, 33);
+            this.Size = new System.Drawing.Size(500, 150);
             this.ResumeLayout(false);
             this.PerformLayout();
 

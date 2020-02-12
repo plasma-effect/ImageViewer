@@ -34,5 +34,125 @@ namespace ImageViewer.Properties {
                 this["controlFont"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string recentPath0 {
+            get {
+                return ((string)(this["recentPath0"]));
+            }
+            set {
+                this["recentPath0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string recentPath1 {
+            get {
+                return ((string)(this["recentPath1"]));
+            }
+            set {
+                this["recentPath1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string recentPath2 {
+            get {
+                return ((string)(this["recentPath2"]));
+            }
+            set {
+                this["recentPath2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string recentPath3 {
+            get {
+                return ((string)(this["recentPath3"]));
+            }
+            set {
+                this["recentPath3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string recentPath4 {
+            get {
+                return ((string)(this["recentPath4"]));
+            }
+            set {
+                this["recentPath4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string recentPath5 {
+            get {
+                return ((string)(this["recentPath5"]));
+            }
+            set {
+                this["recentPath5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string recentPath6 {
+            get {
+                return ((string)(this["recentPath6"]));
+            }
+            set {
+                this["recentPath6"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string recentPath7 {
+            get {
+                return ((string)(this["recentPath7"]));
+            }
+            set {
+                this["recentPath7"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string recentPath8 {
+            get {
+                return ((string)(this["recentPath8"]));
+            }
+            set {
+                this["recentPath8"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string recentPath9 {
+            get {
+                return ((string)(this["recentPath9"]));
+            }
+            set {
+                this["recentPath9"] = value;
+            }
+        }
     }
 }

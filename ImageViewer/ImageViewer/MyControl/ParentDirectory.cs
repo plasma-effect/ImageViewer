@@ -12,10 +12,11 @@ namespace ImageViewer
 {
     public partial class ParentDirectory : UserControl, IDirectoryContent
     {
-        public ParentDirectory(FileExplorer explorer)
+        public ParentDirectory(FileExplorer explorer, Font font)
         {
             this.explorer = explorer;
             InitializeComponent();
+            SetFont(font);
         }
 
         FileExplorer explorer;
