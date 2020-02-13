@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ファイルToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.フォルダを開くToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.アルバムを開くToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recentPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.アルバムを新規作成ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.アルバムを保存ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,7 +56,7 @@
             this.directoryLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.albumLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.albumNameLabel = new System.Windows.Forms.Label();
-            this.recentPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,6 +96,7 @@
             // フォルダを開くToolStripMenuItem
             // 
             this.フォルダを開くToolStripMenuItem.Name = "フォルダを開くToolStripMenuItem";
+            this.フォルダを開くToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
             this.フォルダを開くToolStripMenuItem.Size = new System.Drawing.Size(516, 44);
             this.フォルダを開くToolStripMenuItem.Text = "フォルダを開く";
             this.フォルダを開くToolStripMenuItem.Click += new System.EventHandler(this.OpenFolderToolStripMenuItemClick);
@@ -101,9 +104,16 @@
             // アルバムを開くToolStripMenuItem
             // 
             this.アルバムを開くToolStripMenuItem.Name = "アルバムを開くToolStripMenuItem";
+            this.アルバムを開くToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.アルバムを開くToolStripMenuItem.Size = new System.Drawing.Size(516, 44);
             this.アルバムを開くToolStripMenuItem.Text = "アルバムを開く";
             this.アルバムを開くToolStripMenuItem.Click += new System.EventHandler(this.OpenAlbumToolStripMenuItemClick);
+            // 
+            // recentPathToolStripMenuItem
+            // 
+            this.recentPathToolStripMenuItem.Name = "recentPathToolStripMenuItem";
+            this.recentPathToolStripMenuItem.Size = new System.Drawing.Size(516, 44);
+            this.recentPathToolStripMenuItem.Text = "最近開いたアルバム";
             // 
             // toolStripSeparator1
             // 
@@ -113,6 +123,7 @@
             // アルバムを新規作成ToolStripMenuItem
             // 
             this.アルバムを新規作成ToolStripMenuItem.Name = "アルバムを新規作成ToolStripMenuItem";
+            this.アルバムを新規作成ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.アルバムを新規作成ToolStripMenuItem.Size = new System.Drawing.Size(516, 44);
             this.アルバムを新規作成ToolStripMenuItem.Text = "アルバムを新規作成";
             this.アルバムを新規作成ToolStripMenuItem.Click += new System.EventHandler(this.NewAlbumToolStripMenuItemClick);
@@ -120,6 +131,7 @@
             // アルバムを保存ToolStripMenuItem
             // 
             this.アルバムを保存ToolStripMenuItem.Name = "アルバムを保存ToolStripMenuItem";
+            this.アルバムを保存ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.アルバムを保存ToolStripMenuItem.Size = new System.Drawing.Size(516, 44);
             this.アルバムを保存ToolStripMenuItem.Text = "アルバムを保存";
             this.アルバムを保存ToolStripMenuItem.Click += new System.EventHandler(this.SaveAlbumToolStripMenuItemClick);
@@ -220,18 +232,19 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(283, 44);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(359, 44);
             this.toolStripMenuItem2.Text = "使い方ガイド";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.HowToUseClick);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(280, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(356, 6);
             // 
             // バージョン情報ToolStripMenuItem
             // 
             this.バージョン情報ToolStripMenuItem.Name = "バージョン情報ToolStripMenuItem";
-            this.バージョン情報ToolStripMenuItem.Size = new System.Drawing.Size(283, 44);
+            this.バージョン情報ToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.バージョン情報ToolStripMenuItem.Text = "バージョン情報";
             this.バージョン情報ToolStripMenuItem.Click += new System.EventHandler(this.VersionInformationToolStripMenuItemClick);
             // 
@@ -276,11 +289,9 @@
             this.albumNameLabel.TabIndex = 3;
             this.albumNameLabel.Text = "新しいアルバム";
             // 
-            // recentPathToolStripMenuItem
+            // timer1
             // 
-            this.recentPathToolStripMenuItem.Name = "recentPathToolStripMenuItem";
-            this.recentPathToolStripMenuItem.Size = new System.Drawing.Size(516, 44);
-            this.recentPathToolStripMenuItem.Text = "最近開いたアルバム";
+            this.timer1.Tick += new System.EventHandler(this.TimerTick);
             // 
             // FileExplorer
             // 
@@ -297,7 +308,7 @@
             this.Text = "Explorer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FileExplorerFormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FileExplorerClosed);
-            this.Load += new System.EventHandler(this.FileExplorerLoad);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FileExplorerKeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -334,6 +345,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem 順番をランダムにするToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recentPathToolStripMenuItem;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

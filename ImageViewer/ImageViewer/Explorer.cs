@@ -20,11 +20,16 @@ namespace ImageViewer
             InitializeComponent();
             if(path is null)
             {
-                path = Application.ExecutablePath;
+                path = Path.GetDirectoryName(Application.ExecutablePath);
             }
-            this.directory = new DirectoryInfo(Path.GetDirectoryName(path));
             this.directoryList = new List<(string path, IDirectoryContent content)>();
             this.albumList = new List<(string path, AlbumFile content)>();
+            this.directory = new DirectoryInfo(path);
+            FontChange(Properties.Settings.Default.controlFont);
+            SetRecentPath();
+            this.viewer = new ImageViewer(this);
+            this.viewer.Show();
+            this.timer1.Enabled = true;
         }
 
         static readonly string[] targetExtention = new string[]
@@ -35,14 +40,6 @@ namespace ImageViewer
         ImageViewer viewer;
 
         #region EventFunctions
-        private void FileExplorerLoad(object sender, EventArgs e)
-        {
-            this.viewer = new ImageViewer(this);
-            this.viewer.Show();
-            SetDirectory(this.directory.FullName);
-            FontChange(Properties.Settings.Default.controlFont);
-            SetRecentPath();
-        }
         private void FileExplorerClosed(object sender, FormClosedEventArgs e)
         {
             this.viewer.Close();
@@ -119,57 +116,6 @@ namespace ImageViewer
                 return;
             }
         }
-        protected override bool IsInputKey(Keys keyData)
-        {
-            if (keyData == Keys.Up || keyData == Keys.Down)
-            {
-                return true;
-            }
-            else
-            {
-                return base.IsInputKey(keyData);
-            }
-        }
-        protected override void OnKeyDown(KeyEventArgs e)
-        {
-            if (e.KeyData == (Keys.Shift | Keys.Down))
-            {
-                if (this.currentFileA != null)
-                {
-                    SwapAlbumIndex(this.currentFileA.Index, this.currentFileA.Index + 1);
-                }
-            }
-            else if (e.KeyData == (Keys.Shift | Keys.Up))
-            {
-                if (this.currentFileA != null)
-                {
-                    SwapAlbumIndex(this.currentFileA.Index, this.currentFileA.Index - 1);
-                }
-            }
-            else if (e.KeyCode == Keys.Down)
-            {
-                PressViewArrow(1);
-            }
-            else if (e.KeyCode == Keys.Up)
-            {
-                PressViewArrow(-1);
-            }
-            else if (e.KeyCode == Keys.S && e.Control)
-            {
-                if (this.Changed)
-                {
-                    SaveAlbum();
-                }
-            }
-            else if (e.KeyCode == Keys.N && e.Control)
-            {
-                CreateNewAlbum();
-            }
-            else
-            {
-                base.OnKeyDown(e);
-            }
-        }
         private void SortByNameToolStripMenuItemClick(object sender, EventArgs e)
         {
             this.albumList.Sort((a, b) => a.content.FileName.CompareTo(b.content.FileName));
@@ -233,6 +179,7 @@ namespace ImageViewer
                 content.SetFont(this.font);
             }
             Properties.Settings.Default.controlFont = this.font;
+            Properties.Settings.Default.Save();
         }
         private string EmptyToNull(string str)
         {
@@ -245,6 +192,7 @@ namespace ImageViewer
                 {
                     var item = new ToolStripMenuItem(path);
                     item.Click += (sender, e) => OpenAlbum(path);
+                    this.recentPathToolStripMenuItem.DropDownItems.Add(item);
                 }
             }
             {
@@ -252,6 +200,7 @@ namespace ImageViewer
                 {
                     var item = new ToolStripMenuItem(path);
                     item.Click += (sender, e) => OpenAlbum(path);
+                    this.recentPathToolStripMenuItem.DropDownItems.Add(item);
                 }
             }
             {
@@ -259,6 +208,7 @@ namespace ImageViewer
                 {
                     var item = new ToolStripMenuItem(path);
                     item.Click += (sender, e) => OpenAlbum(path);
+                    this.recentPathToolStripMenuItem.DropDownItems.Add(item);
                 }
             }
             {
@@ -266,6 +216,7 @@ namespace ImageViewer
                 {
                     var item = new ToolStripMenuItem(path);
                     item.Click += (sender, e) => OpenAlbum(path);
+                    this.recentPathToolStripMenuItem.DropDownItems.Add(item);
                 }
             }
             {
@@ -273,6 +224,7 @@ namespace ImageViewer
                 {
                     var item = new ToolStripMenuItem(path);
                     item.Click += (sender, e) => OpenAlbum(path);
+                    this.recentPathToolStripMenuItem.DropDownItems.Add(item);
                 }
             }
             {
@@ -280,6 +232,7 @@ namespace ImageViewer
                 {
                     var item = new ToolStripMenuItem(path);
                     item.Click += (sender, e) => OpenAlbum(path);
+                    this.recentPathToolStripMenuItem.DropDownItems.Add(item);
                 }
             }
             {
@@ -287,6 +240,7 @@ namespace ImageViewer
                 {
                     var item = new ToolStripMenuItem(path);
                     item.Click += (sender, e) => OpenAlbum(path);
+                    this.recentPathToolStripMenuItem.DropDownItems.Add(item);
                 }
             }
             {
@@ -294,6 +248,7 @@ namespace ImageViewer
                 {
                     var item = new ToolStripMenuItem(path);
                     item.Click += (sender, e) => OpenAlbum(path);
+                    this.recentPathToolStripMenuItem.DropDownItems.Add(item);
                 }
             }
             {
@@ -301,6 +256,7 @@ namespace ImageViewer
                 {
                     var item = new ToolStripMenuItem(path);
                     item.Click += (sender, e) => OpenAlbum(path);
+                    this.recentPathToolStripMenuItem.DropDownItems.Add(item);
                 }
             }
             {
@@ -308,6 +264,7 @@ namespace ImageViewer
                 {
                     var item = new ToolStripMenuItem(path);
                     item.Click += (sender, e) => OpenAlbum(path);
+                    this.recentPathToolStripMenuItem.DropDownItems.Add(item);
                 }
             }
         }
@@ -353,6 +310,7 @@ namespace ImageViewer
             {
                 Properties.Settings.Default.recentPath9 = this.recentPathToolStripMenuItem.DropDownItems[9].Text;
             }
+            Properties.Settings.Default.Save();
         }
         #endregion
 
@@ -360,6 +318,10 @@ namespace ImageViewer
         DirectoryInfo directory;
         List<(string path, IDirectoryContent content)> directoryList;
         DirectoryFile currentFileD;
+        public void InitDirectory()
+        {
+            SetDirectory(this.directory.FullName);
+        }
         private void ClearCurrentViewDirectory(bool clear)
         {
             if (this.currentFileD != null)
@@ -418,6 +380,8 @@ namespace ImageViewer
             if (!Directory.Exists(this.directoryList[index].path))
             {
                 MessageBox.Show($@"""{this.directoryList[index].path}""は存在しません、表をリセットします", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                SetDirectory(this.directory.FullName);
+                return;
             }
             SetDirectory(this.directoryList[index].path);
         }
@@ -459,6 +423,10 @@ namespace ImageViewer
             set
             {
                 this.albumPath = value;
+                if (value == null)
+                {
+                    return;
+                }
                 var item = new ToolStripMenuItem(value);
                 item.Click += (sender, e) => OpenAlbum(value);
                 foreach (var i in Range(0, this.recentPathToolStripMenuItem.DropDownItems.Count))
@@ -801,5 +769,48 @@ namespace ImageViewer
             }
         }
         #endregion
+
+
+        private void FileExplorerKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == (Keys.Shift | Keys.Down))
+            {
+                if (this.currentFileA != null)
+                {
+                    SwapAlbumIndex(this.currentFileA.Index, this.currentFileA.Index + 1);
+                }
+            }
+            else if (e.KeyData == (Keys.Shift | Keys.Up))
+            {
+                if (this.currentFileA != null)
+                {
+                    SwapAlbumIndex(this.currentFileA.Index, this.currentFileA.Index - 1);
+                }
+            }
+            else if (e.KeyCode == Keys.Down)
+            {
+                PressViewArrow(1);
+            }
+            else if (e.KeyCode == Keys.Up)
+            {
+                PressViewArrow(-1);
+            }
+        }
+
+        private void TimerTick(object sender, EventArgs e)
+        {
+            this.timer1.Enabled = false;
+            InitDirectory();
+        }
+
+        private void HowToUseClick(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(@"ブラウザで当ソフトウェアのプロジェクトのREADME.mdのページを開きます。
+URL：https://github.com/plasma-effect/ImageViewer/blob/master/README.md
+問題がなければOKを、そうでないならキャンセルを選択してください。", "確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
+            {
+                System.Diagnostics.Process.Start(@"https://github.com/plasma-effect/ImageViewer/blob/master/README.md");
+            }
+        }
     }
 }
